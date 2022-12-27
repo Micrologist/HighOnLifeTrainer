@@ -195,7 +195,8 @@ namespace High_On_Life_Trainer
 			SetLabel(trainer.ShouldNoclip, noclipLabel);
 			SetLabel(trainer.ShouldAmmo, ammoLabel);
 			gameSpeedLabel.Content = trainer.SelectedGameSpeed.ToString("0.0") + "x";
-		}
+            healthBlock.Text = trainer.Health + " hp";
+        }
 
 		private void SetLabel(bool state, System.Windows.Controls.Label label)
 		{
