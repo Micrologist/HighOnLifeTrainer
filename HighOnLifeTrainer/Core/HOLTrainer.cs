@@ -21,8 +21,9 @@ namespace High_On_Life_Trainer
 		public float YPos { get; private set; }
 		public float ZPos { get; private set; }
 		public float Vel { get; private set; }
+        public float Health { get; private set; }
 
-		private readonly HOLMemory mem;
+        private readonly HOLMemory mem;
 
 		private readonly float[] storedPos = new float[5] { 0f, 0f, 0f, 0f, 0f };
 
@@ -87,14 +88,17 @@ namespace High_On_Life_Trainer
 				HandleNoClipMovement();
 			}
 
+			//if (!ShouldNoclip && IsBitSet((byte)mem.Watchers["godMode"].Current, 0) != !ShouldGod)
+			//{
+			//	SetGod(ShouldGod);
+			//}
 
-			if (!ShouldNoclip && IsBitSet((byte)mem.Watchers["godMode"].Current, 0) != !ShouldGod)
-			{
-				SetGod(ShouldGod);
-			}
+            if (ShouldGod) {
+                mem.Write("health", 130f);
+            }
 
 
-		}
+        }
 
 		private void HandleNoClipMovement()
 		{
@@ -122,7 +126,8 @@ namespace High_On_Life_Trainer
 			float yVel = (float)mem.Watchers["yVel"].Current;
 			double hVel = Math.Floor(Math.Sqrt((xVel * xVel) + (yVel * yVel)) + 0.5f) / 100;
 			Vel = (float)hVel;
-		}
+            Health = (float)mem.Watchers["health"].Current;
+        }
 
 		private void StorePosition()
 		{

@@ -91,9 +91,9 @@ namespace High_On_Life_Trainer
 			DeepPointer collisionEnabledPtr = new DeepPointer(localPlayerBase, 0x30, 0x2C8, 0x5C);
 			DeepPointer vLookPtr = new DeepPointer(localPlayerBase, 0x30, 0x2B0);
 			DeepPointer hLookPtr = new DeepPointer(localPlayerBase, 0x30, 0x2B4);
+            DeepPointer healthPtr = new DeepPointer(localPlayerBase, 0x30, 0x120, 0x58, 0xD0, 0x40, 0x3C);
 
-
-			DeepPointer gameSpeedPtr = new DeepPointer(worldBase, 0x30, 0x270, 0x2E8);
+            DeepPointer gameSpeedPtr = new DeepPointer(worldBase, 0x30, 0x270, 0x2E8);
 
 			Watchers = new MemoryWatcherList() {
 				new MemoryWatcher<float>(xPosPtr) { Name = "xPos" },
@@ -110,8 +110,9 @@ namespace High_On_Life_Trainer
 				new MemoryWatcher<byte>(collisionEnabledPtr) { Name = "collisionEnabled" },
 				new MemoryWatcher<float>(vLookPtr) { Name = "vLook" },
 				new MemoryWatcher<float>(hLookPtr) { Name = "hLook" },
-				new MemoryWatcher<float>(gameSpeedPtr) { Name = "gameSpeed" }
-			};
+				new MemoryWatcher<float>(gameSpeedPtr) { Name = "gameSpeed" },
+                new MemoryWatcher<float>(healthPtr) { Name = "health" }
+            };
 
 			try
 			{
